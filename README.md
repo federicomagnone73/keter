@@ -13,8 +13,8 @@ Identity Server
 ### Il Flusso di Autenticazione (Logica del Microservizio)
 Il servizio esporrà principalmente tre endpoint:
 
-A. POST /register: Riceve email/password, valida con Zod, effettua l'hash con Argon2 e salva su Postgres.
-B. POST /login: Verifica le credenziali e restituisce due token:
-   B.1 Access Token (JWT): Breve durata (es. 15 min), salvato in memoria dal client.
-   B.2 Refresh Token: Lunga durata (es. 7 giorni), salvato in un cookie httpOnly o nel DB.
-C. GET /verify: Usato dagli altri microservizi (o dal Gateway) per validare il JWT.
+1. POST /register: Riceve email/password, valida con Zod, effettua l'hash con Argon2 e salva su Postgres.
+2. POST /login: Verifica le credenziali e restituisce due token:
+   2.1 Access Token (JWT): Breve durata (es. 15 min), salvato in memoria dal client.
+   2.2 Refresh Token: Lunga durata (es. 7 giorni), salvato in un cookie httpOnly o nel DB.
+3. GET /verify: Usato dagli altri microservizi (o dal Gateway) per validare il JWT.

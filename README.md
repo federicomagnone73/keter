@@ -1,7 +1,7 @@
-## KETER
+# KETER
 Identity Server
 
-# Stack Tecnologico :
+### Stack Tecnologico :
 
 Runtime: Node.js (v20+) con TypeScript.
 

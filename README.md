@@ -3,14 +3,18 @@ Identity Server
 
 ### Stack Tecnologico :
 
-Runtime: Node.js (v20+) con TypeScript.
+1. Runtime: Node.js (v20+) con TypeScript.
+2. Framework: Fastify (più veloce di Express, ideale per microservizi).
+3. Database: PostgreSQL (Dati utenti).
+4. Cache/Sessioni: Redis (per revoca token e rate limiting).
+5. ORM: Drizzle ORM (estremamente leggero e "type-safe").
+6. Hashing: Argon2 (più sicuro e veloce di Bcrypt).
+   
+### Il Flusso di Autenticazione (Logica del Microservizio)
+Il servizio esporrà principalmente tre endpoint:
 
-Framework: Fastify (più veloce di Express, ideale per microservizi).
-
-Database: PostgreSQL (Dati utenti).
-
-Cache/Sessioni: Redis (per revoca token e rate limiting).
-
-ORM: Drizzle ORM (estremamente leggero e "type-safe").
-
-Hashing: Argon2 (più sicuro e veloce di Bcrypt).
+A. POST /register: Riceve email/password, valida con Zod, effettua l'hash con Argon2 e salva su Postgres.
+B. POST /login: Verifica le credenziali e restituisce due token:
+   B.1 Access Token (JWT): Breve durata (es. 15 min), salvato in memoria dal client.
+   B.2 Refresh Token: Lunga durata (es. 7 giorni), salvato in un cookie httpOnly o nel DB.
+C. GET /verify: Usato dagli altri microservizi (o dal Gateway) per validare il JWT.

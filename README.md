@@ -17,4 +17,4 @@ Il servizio esporrà principalmente tre endpoint:
 2. POST /login: Verifica le credenziali e restituisce due token:
    2.1 Access Token (JWT): Breve durata (es. 15 min), salvato in memoria dal client.
    2.2 Refresh Token: Lunga durata (es. 7 giorni), salvato in un cookie httpOnly o nel DB.
-3. GET /verify: Usato dagli altri microservizi (o dal Gateway) per validare il JWT.
+4. GET /verify: Usato dagli altri microservizi (o dal Gateway) per validare il JWT.
